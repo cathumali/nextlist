@@ -1,0 +1,6 @@
+export const jobsConstants = {
+
+    FETCH_JOBS_REQUEST    : 'FETCH_JOBS_REQUEST',
+    FETCH_JOBS_SUCCESS    : 'FETCH_JOBS_SUCCESS',
+    FETCH_JOBS_FAILED     : 'FETCH_JOBS_FAILED', 
+}

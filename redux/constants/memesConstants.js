@@ -1,0 +1,6 @@
+export const memesConstants = {
+
+    FETCH_MEMES_REQUEST    : 'FETCH_MEMES_REQUEST',
+    FETCH_MEMES_SUCCESS    : 'FETCH_MEMES_SUCCESS',
+    FETCH_MEMES_FAILED     : 'FETCH_MEMES_FAILED', 
+}
