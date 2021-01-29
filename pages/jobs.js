@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAllJobs } from '../redux/actions/jobActions';
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 import Head from 'next/head'
 import ReactHtmlParser from 'react-html-parser';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import Link from 'next/link'
 
 class Jobs extends React.Component {
 
@@ -21,55 +23,43 @@ class Jobs extends React.Component {
     console.log(this.props);
     const jobList = this.props.jobs.data;
     return (
-      <div className={styles.container}>
+      <Container>
         <Head>
           <title>Job Openings</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Row>
+          <Col sm={12}>
+            <h1>Openings</h1>
+          </Col>
+          { this.props.loading_jobs && <h5>Loading...</h5> }            
+          <Col sm={12}>
+            { Boolean(jobList?.length) && jobList.map( (job,key) => {
+              return (
+                <Card className="mb-4" key={key}>
+                  <Card.Body className="">
 
-        <main className={styles.main}> 
+                    <Card.Title className="">{ ReactHtmlParser(job.title) }</Card.Title>
 
-          <div className="content-wrapper"s>
-              <div className="content-header">
-                <div className="container">
-                  <div className="row mb-2">
-                    <div className="col-sm-12">
-                      <h1 className="m-0 text-dark float-left"> Open Positions</h1>
-                    </div>  
-                  </div> 
-                </div> 
-              </div> 
-              
-              <div className="content">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      { this.props.loading_jobs && <h5>Loading...</h5> }
-                      { Boolean(jobList?.length) && jobList.map( (job,key) => {
-                        return (
-                          <div className="card mb-4" key={key}>
-                            <div className="card-body">
-                              <h5 className="card-title">{ job.title }</h5>
+                    <Link href={`${job.company_url}`}>
+                      <b className="text-muted" style={{cursor:"pointer"}}>{ job.company }</b>
+                    </Link>
+                    <br />
+                    <small className="text-muted" >Posted at: { job.created_at } </small>
 
-                              <div className="card-text">
-                                { ReactHtmlParser(job.description) }
-                              </div>
+                    <Card.Text className="">
+                      { ReactHtmlParser(job.description) }
+                    </Card.Text>
 
-
-                            </div>
-                          </div>
-                        );
-                      })}
- 
-                    </div>  
-                    
-                  </div> 
-                </div> 
-              </div> 
-            </div> 
- 
-        </main> 
-      </div>
+                    <h4>How to apply:</h4>
+                    { ReactHtmlParser(job.how_to_apply) }
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </Col>
+        </Row> 
+      </Container> 
     )
   }
 }

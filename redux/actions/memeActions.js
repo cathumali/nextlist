@@ -27,8 +27,12 @@ export const fetchAllMemes = () => dispatch => {
  * Services
  */
 const fetchAllMemesService = (config) => {
-  const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-  return fetch( `${corsAnywhere}https://api.imgflip.com/get_memes`, config ).then(res => res.json())
+  // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
+  // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
+  // const memesUrl = `https://api.imgflip.com/get_memes`
+  // return fetch( `${corsAnywhere}${memesUrl}`, config ).then(res => res.json())
+  const fileData = 'api/memes';
+  return fetch( `${fileData}`, config ).then(res => res.json())
 }
 
 

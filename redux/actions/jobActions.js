@@ -27,8 +27,12 @@ export const fetchAllJobs = () => dispatch => {
  * Services
  */
 const fetchAllJobsService = (config) => {
-  const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
-  return fetch( `${corsAnywhere}https://jobs.github.com/positions.json?description=api`, config ).then(res => res.json())
+  // https://jobs.github.com/positions.json?description=api
+  // const postionsUrl = `https://jobs.github.com/positions.json?description=web`
+  // const corsAnywhere = `https://cors-anywhere.herokuapp.com/`
+  // return fetch( `${corsAnywhere}${postionsUrl}`, config ).then(res => res.json())
+  const fileData = 'api/positions';
+  return fetch( `${fileData}`, config ).then(res => res.json())
 }
 
 

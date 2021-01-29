@@ -6,6 +6,7 @@ import withRedux, { createWrapper } from 'next-redux-wrapper'
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
 
 class MyApp extends App {
 
@@ -22,6 +23,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Provider store={store}>
+          <NavBar />
           <Component {...pageProps}/>
           <Footer />
       </Provider>
